@@ -19,8 +19,9 @@ When an OpenSpec question asks how to handle behavior that Centaur already defin
 5. **Cancellation / execution semantics:** follow Centaur's execution, release, cancellation, event, and final delivery behavior.
 6. **Secrets / egress:** follow Centaur's credential firewall and proxy/egress model. Do not weaken raw-secret boundaries for convenience.
 7. **Sandbox:** follow Centaur's sandbox architecture and isolation model from day 1, translated into TypeScript interfaces and implementations.
-8. **Runner:** follow Centaur's agent harness semantics. The OpenAI/pi implementation should fit the same harness/control-plane architecture rather than inventing a new simplified loop.
-9. **Tools / workflows / overlays / delivery / observability:** follow Centaur's architecture and contracts unless a deliberate deviation is documented and approved.
+8. **Runner:** follow Centaur's agent harness semantics. The OpenAI/pi implementation should fit the same sandbox/stdin/stdout/harness-event/control-plane architecture rather than inventing a direct model-call loop.
+9. **Runtime wire:** follow Centaur's runtime wire: create/reuse sandbox session, attach stdin/stdout, write harness-native NDJSON input, read raw NDJSON output, normalize harness events, persist session/turn state, and stream canonical SSE events.
+10. **Tools / workflows / overlays / delivery / observability:** follow Centaur's architecture and contracts unless a deliberate deviation is documented and approved.
 
 ## Implementation rule
 

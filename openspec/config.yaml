@@ -5,6 +5,7 @@ context: |
   Stack decisions: Bun workspaces, Hono API, Drizzle/Postgres persistence, Zod contracts, @earendil-works/pi-ai for LLM calls, OpenAI provider.
   Core invariant: clients stay thin; durable assignment, execution, event replay, workers, delivery, tools, workflows, overlays, sandboxing, and credential boundaries live in the control plane.
   Architectural rule: when Centaur defines behavior, the TypeScript rewrite follows Centaur rather than inventing a smaller MVP. Inspect Centaur source/research before implementing each change.
+  Runtime rule: agent execution follows Centaur's sandbox/harness protocol. The API/control plane attaches to sandbox stdin/stdout, writes harness-native NDJSON input, reads raw NDJSON events, normalizes them, persists session/turn state, and streams canonical SSE events. pi-ai is a harness/provider implementation detail, not a replacement for this architecture.
 
 rules:
   proposal:

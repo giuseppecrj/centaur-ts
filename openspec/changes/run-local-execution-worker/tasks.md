@@ -5,11 +5,11 @@
 
 ## 2. Test-first implementation
 
-- [ ] 2.1 Create runner interface and fake runner.
+- [ ] 2.1 Create Centaur-compatible harness protocol package and fake/local harness.
 - [ ] 2.2 Implement queued execution claim with DB locking/lease semantics.
-- [ ] 2.3 Implement execution processing and event appends.
-- [ ] 2.4 Add worker lifecycle command or API dev startup hook.
-- [ ] 2.5 Test success, duplicate-worker, and failure paths.
+- [ ] 2.3 Implement sandbox/session attach, stdin injection, stdout streaming, event normalization, and event appends.
+- [ ] 2.4 Add worker/runtime lifecycle command or API dev startup hook.
+- [ ] 2.5 Test success, duplicate-worker, failure, and raw-harness-event normalization paths.
 
 ## 3. Verification
 

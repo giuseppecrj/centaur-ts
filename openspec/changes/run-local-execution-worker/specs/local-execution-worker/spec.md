@@ -8,11 +8,11 @@ The worker SHALL claim queued executions without allowing two workers to run the
 - **THEN** only one worker claims a given execution
 
 ### Requirement: Terminal completion
-The worker SHALL append running, assistant message, and turn done events before marking successful execution completed.
+The runtime SHALL append normalized running, assistant message, and turn done events from Centaur-compatible harness NDJSON output before marking successful execution completed.
 
-#### Scenario: Fake run completes
-- **WHEN** a queued execution is processed by the fake runner
-- **THEN** events include `execution.running`, `assistant.message`, and `turn.done`, and the execution status is `completed`
+#### Scenario: Fake harness run completes
+- **WHEN** a queued execution is processed by the fake/local harness
+- **THEN** raw harness NDJSON normalizes into `execution.running`, `assistant.message`, and `turn.done`, and the execution status is `completed`
 
 ### Requirement: Outbox transition
 The worker SHALL move final delivery outbox rows to pending when an execution reaches a terminal successful state.

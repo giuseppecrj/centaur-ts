@@ -12,8 +12,8 @@ Architecture rule: `centaur-ts` follows Centaur's architecture and contracts fro
 4. `create-drizzle-durable-state` — Postgres + Drizzle schema/migrations for durable state.
 5. `implement-control-plane-services` — assignment/message/execution/event/release services.
 6. `expose-agent-http-protocol` — `/agent/spawn`, `/message`, `/execute`, `/events`, `/release` routes.
-7. `run-local-execution-worker` — fake runner and durable worker loop.
-8. `integrate-pi-openai-runner` — `@earendil-works/pi-ai` OpenAI runner behind the same runner interface.
+7. `run-local-execution-worker` — fake/local Centaur-compatible harness and durable worker/runtime loop.
+8. `integrate-pi-openai-runner` — pi-mono/pi-ai harness integration behind the Centaur sandbox/harness protocol, not a direct model-call replacement.
 9. `add-api-key-auth-admin` — API key hashing, scopes, admin lifecycle.
 10. `add-tool-registry-invocation` — declarative tools, validation, audited invocation.
 11. `add-workflow-checkpoints` — replay-safe workflow runs and checkpoints.

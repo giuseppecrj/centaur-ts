@@ -8,4 +8,6 @@ OpenSpec roadmap: [`docs/openspec-roadmap.md`](docs/openspec-roadmap.md).
 
 Centaur parity decisions: [`docs/centaur-parity-decisions.md`](docs/centaur-parity-decisions.md).
 
+Runtime/harness parity decision: [`docs/runtime-harness-parity-decision.md`](docs/runtime-harness-parity-decision.md).
+
 OpenSpec changes live under [`openspec/changes/`](openspec/changes/).
