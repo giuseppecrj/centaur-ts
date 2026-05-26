@@ -1,10 +1,10 @@
 schema: spec-driven
 
 context: |
-  centaur-ts is a Bun-first TypeScript rebuild of Centaur's durable shared-agent control plane.
+  centaur-ts is a Bun-first TypeScript rewrite of Centaur's durable shared-agent control plane, with strict Centaur architecture parity from day 1.
   Stack decisions: Bun workspaces, Hono API, Drizzle/Postgres persistence, Zod contracts, @earendil-works/pi-ai for LLM calls, OpenAI provider.
-  Core invariant: clients stay thin; durable assignment, execution, event replay, workers, delivery, tools, workflows, overlays, and credential boundaries live in the control plane.
-  First implementation target: local spawn -> message -> execute -> events -> completed result with fake runner, then OpenAI/pi runner.
+  Core invariant: clients stay thin; durable assignment, execution, event replay, workers, delivery, tools, workflows, overlays, sandboxing, and credential boundaries live in the control plane.
+  Architectural rule: when Centaur defines behavior, the TypeScript rewrite follows Centaur rather than inventing a smaller MVP. Inspect Centaur source/research before implementing each change.
 
 rules:
   proposal:

@@ -1,6 +1,8 @@
 # OpenSpec roadmap
 
-This repo uses OpenSpec to split the Centaur TypeScript rebuild into independently reviewable proposals.
+This repo uses OpenSpec to split the Centaur TypeScript rewrite into independently reviewable proposals.
+
+Architecture rule: `centaur-ts` follows Centaur's architecture and contracts from day 1. When an implementation question is already answered by Centaur, inspect the Centaur source/research and translate that behavior into the TypeScript stack rather than inventing a smaller MVP. See [`centaur-parity-decisions.md`](centaur-parity-decisions.md).
 
 ## Build order
 

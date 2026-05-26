@@ -216,30 +216,37 @@ For v0, this is acceptable if runner is explicitly “single-turn text runner fi
 12. **Retention:** Are events/checkpoints/outbox records permanent, TTL-managed, or user/tenant-deletable?
 13. **Deployment target:** Are we targeting local/Docker first, Kubernetes first, or both in parallel?
 
+## User decision: strict Centaur parity
+
+After this review, the user clarified that every open architecture question should be answered by following Centaur exactly from day 1. `centaur-ts` is a TypeScript rewrite of Centaur, not a reduced MVP inspired by Centaur.
+
+Implications:
+
+- Tenancy, auth, event transport, schemas, cancellation, secrets, sandboxing, runner behavior, tools, workflows, overlays, delivery, and observability should match Centaur's architecture and contracts.
+- Non-health routes should be protected from the start according to Centaur's security model.
+- Event transport should use SSE or whichever event streaming/replay mechanism Centaur uses.
+- Drizzle schemas should model everything Centaur models, translated to TypeScript/Drizzle/Postgres.
+- Any remaining implementation uncertainty should be resolved by inspecting Centaur source and research docs before coding.
+
+See [`docs/centaur-parity-decisions.md`](centaur-parity-decisions.md).
+
 ## Recommended implementation kickoff plan
 
-Before implementation, patch the roadmap/proposals with these decisions:
+Before implementation, patch individual proposals as needed so they explicitly encode Centaur parity rather than smaller local-loop defaults:
 
 1. Add dependency/DAG notes to the roadmap.
-2. Split `create-drizzle-durable-state` into core schema first; future schemas later.
-3. Move minimal auth seam before agent HTTP protocol, or mark early API explicitly dev-only.
-4. Move minimal secret provider/sanitizer before OpenAI runner/tool invocation.
-5. Introduce sandbox backend interface before real runner/tool/workflow code relies on execution location.
-6. Add a small execution state-machine spec section before control-plane implementation.
-7. Choose event transport for v0.
+2. Patch auth, tenancy, event transport, schema ownership, cancellation, secrets, sandbox, runner, tools, workflows, overlays, delivery, and observability specs to say “match Centaur” where relevant.
+3. For each implementation change, inspect the corresponding Centaur source/research first and translate the existing architecture into Bun/Hono/Drizzle/Zod/pi-ai/OpenAI.
+4. Keep TDD and OpenSpec validation discipline; do not replace Centaur behavior with a simplified MVP unless explicitly approved.
 
-Suggested revised first implementation order:
+Suggested first implementation order remains foundation-first, but with Centaur parity as the contract:
 
 1. `build-monorepo-foundation`
-2. `define-zod-contracts` — core agent contracts only, plus extension placeholders
+2. `define-zod-contracts`
 3. `build-hono-api-shell`
-4. Minimal trace/config + auth seam
-5. `create-drizzle-durable-state` — core loop schema only
-6. Execution state-machine patch
-7. `implement-control-plane-services`
-8. `expose-agent-http-protocol`
-9. `run-local-execution-worker`
-10. `add-local-smoke-docs` for fake runner loop
-11. Minimal secret provider/sanitizer
-12. `integrate-pi-openai-runner`
-13. Tools/workflows/overlays/sandbox/delivery/ops hardening
+4. `create-drizzle-durable-state`
+5. `implement-control-plane-services`
+6. `expose-agent-http-protocol`
+7. `run-local-execution-worker`
+8. `integrate-pi-openai-runner`
+9. Remaining tools/workflows/overlays/sandbox/secrets/delivery/ops changes according to Centaur dependencies.

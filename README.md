@@ -6,4 +6,6 @@ Initial implementation plan: [`docs/plans/2026-05-26-centaur-ts-implementation.m
 
 OpenSpec roadmap: [`docs/openspec-roadmap.md`](docs/openspec-roadmap.md).
 
+Centaur parity decisions: [`docs/centaur-parity-decisions.md`](docs/centaur-parity-decisions.md).
+
 OpenSpec changes live under [`openspec/changes/`](openspec/changes/).
